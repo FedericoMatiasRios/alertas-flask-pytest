@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert App</title>
+</head>
+
+<body>
+    <h1>Alert App</h1>
+
+    <form id="alertForm">
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*" required><br>
+
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" id="ubicacion" name="ubicacion" required><br>
+
+        <label for="latitud">Latitud:</label>
+        <input type="text" id="latitud" name="latitud" required><br>
+
+        <label for="longitud">Longitud:</label>
+        <input type="text" id="longitud" name="longitud" required><br>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br>
+
+        <input type="submit" value="Enviar Alerta">
+    </form>
+
+    <script>
+        document.getElementById('alertForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Gather form data
+            const formData = new FormData(this);
+
+            // Send data to the server using fetch
+            fetch('http://127.0.0.1:5000/api/alertas', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Alerta enviada correctamente');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Error al enviar la alerta');
+                });
+        });
+    </script>
+</body>
+
+</html>

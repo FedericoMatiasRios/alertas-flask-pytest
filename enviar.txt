@@ -1,0 +1,1 @@
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "imagen=imagen.png&ubicacion=Ubicacion actual&latitud=123&longitud=456&descripcion=Incendio cerca del parque" http://127.0.0.1:5000/api/alertas
